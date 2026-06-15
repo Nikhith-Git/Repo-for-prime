@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Todo List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      #todoInput {
+        width: 220px;
+        padding: 8px;
+        margin-right: 8px;
+      }
+      #addButton {
+        padding: 8px 14px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+      }
+      .deleteBtn {
+        margin-left: 12px;
+        padding: 4px 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Todo List</h2>
+    <input id="todoInput" type="text" placeholder="Add a task" />
+    <button id="addButton">Add</button>
+    <ul id="todoList"></ul>
+
+    <script>
+      const input = document.getElementById('todoInput');
+      const addButton = document.getElementById('addButton');
+      const list = document.getElementById('todoList');
+
+      addButton.onclick = function() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        const item = document.createElement('li');
+        item.textContent = text;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'deleteBtn';
+        deleteButton.onclick = function() {
+          list.removeChild(item);
+        };
+
+        item.appendChild(deleteButton);
+        list.appendChild(item);
+        input.value = '';
+        input.focus();
+      };
+    </script>
+  </body>
+</html>
