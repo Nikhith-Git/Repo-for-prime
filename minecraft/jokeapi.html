@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Random Joke</h2>
+<button onclick="getJoke()">Get Joke</button>
+
+<p id="joke"></p>
+
+<script>
+async function getJoke() {
+    const res = await fetch("https://v2.jokeapi.dev/joke/Any");
+    const data = await res.json();
+
+    document.getElementById("joke").innerHTML =
+        data.type === "single"
+        ? data.joke
+        : data.setup + "<br><br>" + data.delivery;
+}
+</script>
+
+</body>
+</html>
